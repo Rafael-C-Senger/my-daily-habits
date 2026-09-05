@@ -1,4 +1,10 @@
-export default function HabitCard({title, goal, completed}) {
+export default function HabitCard({
+    id,
+    title, 
+    goal, 
+    completed,
+    onShowDetails,
+}) {
     return (
         <article className={`habit-card ${completed ? "is-complete":""}`}>
             <div>
@@ -9,6 +15,10 @@ export default function HabitCard({title, goal, completed}) {
             <span className="habit-status">
                 {completed ? "Concluído" : "Em andamento"}
             </span>
+
+            <button type="button" onClick={() => onShowDetails(id)}>
+                Detalhes
+            </button>
         </article>
     );
 }
