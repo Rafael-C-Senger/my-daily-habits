@@ -3,6 +3,7 @@ import HabitList from "./components/HabitList";
 import Panel from "./components/Panel";
 import { initialHabits } from "./data/habits";
 import { useState } from "react";
+import HabitForm from "./components/HabitForm";
 
 export default function App() {
   const [habits, setHabits] = useState(initialHabits);
@@ -11,6 +12,9 @@ export default function App() {
     (habit) => habit.completed,
   ).length;
 
+  function handleAddHabit(newHabit) {
+    setHabits((currentHabits) => [...currentHabits, newHabit]);
+  }
   
 
   function handleToggleHabit(habitId) {
@@ -33,6 +37,10 @@ export default function App() {
           {completedCount} de {initialHabits.length} hábitos concluídos.
         </p>
       </header>
+
+      <Panel title="Adicionar hábito">
+        <HabitForm onAddHabit={handleAddHabit} />
+      </Panel>
 
       <Panel title="Hábitos de hoje">
         <HabitList 
